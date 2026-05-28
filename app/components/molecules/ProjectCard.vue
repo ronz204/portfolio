@@ -7,6 +7,10 @@
         <img :src="project.image" :alt="`Screenshot of ${project.title} project`"
           class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
 
+        <!-- Index badge -->
+        <span class="absolute top-3 left-3 z-10 font-mono text-xs text-foreground/50 select-none" aria-hidden="true">{{
+          String(index + 1).padStart(2, '0') }}</span>
+
         <!-- Overlay on hover -->
         <div
           class="absolute inset-0 bg-background/60 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

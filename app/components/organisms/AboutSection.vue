@@ -22,6 +22,17 @@
                 experience.
               </p>
             </RevealItem>
+            <RevealItem :delay="300">
+              <div class="mt-8">
+                <span class="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">Core Stack</span>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span v-for="skill in coreStack" :key="skill"
+                    class="rounded-full border border-border bg-secondary/50 px-3 py-1 font-mono text-[11px] text-secondary-foreground transition-colors duration-200 hover:border-foreground/20 hover:bg-secondary">
+                    {{ skill }}
+                  </span>
+                </div>
+              </div>
+            </RevealItem>
           </div>
 
           <div class="md:col-span-2">
@@ -61,5 +72,11 @@ const facts: Fact[] = [
   { label: "Experience", value: "2+ years" },
   { label: "Focus", value: "Full-Stack / Cloud" },
   { label: "Languages", value: "EN / ES" },
+];
+
+const coreStack = [
+  "TypeScript", "Vue", "React", "Node.js",
+  "NuxtJS", "Next.js", ".NET", "PostgreSQL",
+  "Docker", "AWS", "Tailwind",
 ];
 </script>
