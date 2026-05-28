@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{
 
 <template>
   <div data-reveal
-    class="opacity-0 translate-y-6 transition-all duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0"
+    class="opacity-0 translate-y-6 overflow-anchor-none transition duration-700 ease-out [&.is-visible]:opacity-100 [&.is-visible]:translate-y-0"
     :style="{ transitionDelay: `${props.delay}ms` }">
     <slot />
   </div>
