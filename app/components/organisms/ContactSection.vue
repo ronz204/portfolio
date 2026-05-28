@@ -31,9 +31,10 @@
                   <Transition enter-active-class="transition-all duration-200" enter-from-class="opacity-0 scale-75"
                     enter-to-class="opacity-100 scale-100" leave-active-class="transition-all duration-150"
                     leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-75" mode="out-in">
+
                     <span v-if="copied" key="copied" class="text-xs text-muted-foreground">Copied ✓</span>
-                    <Icon v-else key="arrow" name="lucide:arrow-up-right"
-                      class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <Icon v-else key="copy" name="lucide:copy"
+                      class="h-4 w-4 transition-transform group-hover:scale-110" />
                   </Transition>
                 </span>
               </button>
@@ -106,8 +107,7 @@ async function copyEmail() {
     if (copyTimeout) clearTimeout(copyTimeout);
     copyTimeout = setTimeout(() => { copied.value = false; }, 2000);
   } catch {
-    // Fallback: open mailto
-    window.location.href = 'mailto:roneyruizrojas@gmail.com';
+    // clipboard not available, silent fail
   }
 }
 
