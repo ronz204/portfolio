@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Footer from "~/components/organisms/Footer.vue";
 import Navigation from "~/components/organisms/Navigation.vue";
 import HeroSection from "~/components/organisms/HeroSection.vue";
 import AboutSection from "~/components/organisms/AboutSection.vue";
@@ -17,5 +18,6 @@ import ContactSection from "~/components/organisms/ContactSection.vue";
       <PiecesSection />
       <ContactSection />
     </main>
+    <Footer />
   </div>
 </template>
