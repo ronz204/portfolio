@@ -1,4 +1,3 @@
-
 <template>
   <section id="contact" class="relative py-24 md:py-32">
     <!-- Subtle top divider -->
@@ -23,13 +22,21 @@
             </RevealItem>
 
             <RevealItem :delay="200">
-              <a href="mailto:hello@example.com"
-                class="group mt-8 inline-flex items-center gap-3 text-xl font-semibold text-foreground transition-colors hover:text-muted-foreground md:text-2xl">
-                <Icon name="lucide:mail" class="h-5 w-5" />
-                roneyruizrojas@gmail.com
-                <Icon name="lucide:arrow-up-right"
-                  class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
+              <button type="button"
+                class="group mt-8 inline-flex items-center gap-3 text-xl font-semibold text-foreground transition-colors hover:text-muted-foreground md:text-2xl"
+                :aria-label="copied ? 'Email copied!' : 'Copy email address'" @click="copyEmail">
+                <Icon name="lucide:mail" class="h-5 w-5 shrink-0" />
+                <span>roneyruizrojas@gmail.com</span>
+                <span class="inline-flex items-center gap-1 text-sm font-normal">
+                  <Transition enter-active-class="transition-all duration-200" enter-from-class="opacity-0 scale-75"
+                    enter-to-class="opacity-100 scale-100" leave-active-class="transition-all duration-150"
+                    leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-75" mode="out-in">
+                    <span v-if="copied" key="copied" class="text-xs text-muted-foreground">Copied ✓</span>
+                    <Icon v-else key="arrow" name="lucide:arrow-up-right"
+                      class="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </Transition>
+                </span>
+              </button>
             </RevealItem>
           </div>
 
@@ -88,4 +95,21 @@ const socials: Social[] = [
     href: "https://www.linkedin.com/in/roney-ruiz-rojas-a8a98b292",
   },
 ];
+
+const copied = ref(false);
+let copyTimeout: ReturnType<typeof setTimeout> | null = null;
+
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText('roneyruizrojas@gmail.com');
+    copied.value = true;
+    if (copyTimeout) clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => { copied.value = false; }, 2000);
+  } catch {
+    // Fallback: open mailto
+    window.location.href = 'mailto:roneyruizrojas@gmail.com';
+  }
+}
+
+onUnmounted(() => { if (copyTimeout) clearTimeout(copyTimeout); });
 </script>
