@@ -13,8 +13,8 @@
         <!-- Experience List -->
         <div>
           <RevealItem v-for="(exp, i) in experiences" :key="exp.company" :delay="i * 100">
-            <div
-              class="group relative border-b border-border py-8 transition-colors duration-300 hover:bg-secondary/30 md:py-10 md:px-6 md:-mx-6 md:rounded-lg md:border-b-0">
+            <div class="group relative border-b border-border py-8 md:py-10">
+
               <div class="grid gap-4 md:grid-cols-4">
                 <div class="md:col-span-1">
                   <span class="font-mono text-xs text-muted-foreground">
